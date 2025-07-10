@@ -90,7 +90,7 @@ That’s why the evaluation of the cost-benefit ratios looks likely different fo
 
 % issue 10: how does error detection currently work
 When a diagnostic need arises in an auto workshop, technicians typically rely on specialized off-board diagnostic tools. 
-These tools connect to the vehicle’s onboard systems via standardized interfaces such as the OBD-II port. 
+These tools connect to the vehicle’s onboard systems via standardized interfaces such as the OBD-II port (see Figure~\ref{fig:obd} for an example device). 
 Commonly used diagnostic devices include scan tools and code readers from vendors like Bosch, Snap-on, Autel, and Launch. 
 An essential diagnostic tool for electrical fault analysis is the oscilloscope, which has been used in its traditional and auto shop specific variations by car technicians since the 1960s.
 These tools allow workshops to read error codes, perform system tests, and monitor sensor data to pinpoint faults. 
@@ -184,8 +184,10 @@ During the 1950s, researchers at Bell Laboratories and the Institute for Advance
 Since then, this niche idea has evolved into a scientific discipline called Artificial Intelligence and Machine Learning \cite{RussellNorvig2020, Goodfellow2016}. 
 Latest advances in this area did demonstrate useful opportunities \cite{LeCun2015, Silver2016}. 
 It can thus be imagined to define an abstract function that maps a multidimensional time dependent vector of electrical quantities, also known as time series, to a certain fault category. 
+Figure~\ref{fig:waveforms_good_bad} shows two example waveforms—one from a poor and one from a properly functioning compression cycle—highlighting the type of signal variation that machine learning models can be trained to classify.
 From the toolkit of machine learning, multiple technologies could be interesting from a research stand point to generate such a function or group of functions, though all having in common a need for training data. 
-By automating signal interpretation, the implementation of such functions can reduce the need for manual waveform analysis, lowering the level of expertise required and thus decreasing the amount of technician training necessary-while improving diagnostic reproducibility.
+By automating signal interpretation, the implementation of such functions can reduce the need for manual waveform analysis, 
+lowering the level of expertise required and thus decreasing the amount of technician training necessary-while improving diagnostic reproducibility.
 
 \subsubsection{Modern Microcontroller Technology}
 Traditional oscilloscopes usually come as all-in-one boxes, with high-accuracy analog front-ends and delicate signal processing units to display the measured voltages on a built-in screen. 
@@ -215,7 +217,9 @@ Since the two cornerstones - machine learning and microcontroller - based oscill
 Since Machine Learning models require certain amounts of training data as well as centralized compute power, 
 the according analysis models can be more easily run on centralized servers than on individual auto shop workstations. 
 Yet, the data acquisition with the microcontroller oscilloscopes has to be performed on-site at the auto shop. 
-Connecting these two modules could be done in a multitude of ways.
+Connecting these two modules could be done in a multitude of ways. 
+A conceptual overview of this architecture is illustrated in Figure~\ref{fig:data-server}, where an oscilloscope is connected to a server via USB, 
+and the server provides access to analysis services through REST and WebSocket protocols.
 
 With the increasing employment of web technologies - especially HTTP (Hypertext Transfer Protocol)- it can be assumed that handling the data from acquisition to analysis could be implemented in an open-source approach. 
 While doing that, the fundamental architecture needs to encompass two different modes of communication: asynchronous and synchronous.
@@ -248,7 +252,8 @@ In conclusion this means that the middleware between USB-connected oscilloscopes
   \label{fig:system_architecture}
 \end{figure*}
 Based on these previous considerations and the evergrowing complexity within cars, on-board-diagnostic solutions don't necessarily capture all the required use cases.
-In this paragraph, a proposed off-board-diagnostic-solution is outlined, which might improve single car shops diagnostics capabilities by employing machine learning and data analytics.
+In this paragraph, a proposed off-board-diagnostic-solution is outlined, which might improve single car shops diagnostics capabilities by employing machine learning and data analytics. 
+This system is illustrated in Figure~\ref{fig:system_architecture}, which shows how data flows from oscilloscopes to centralized AI services and back to technicians via a user interface.
 Since the central entity of off-board diagnostics is ususally a techinician within a workshop, the first line of argumentation, that is entertained is their perspective on such a system.
 
 \paragraph{Technician Workflow}
@@ -346,8 +351,10 @@ In accordance with the proposed workflow for car diagnostics, the process begins
 As described in the Introduction, this step typically yields vague and sometimes insufficient error codes (DTCs), which are then displayed and recorded on the local laptop.
 
 To improve diagnostic specificity, USB-based oscilloscopes-our OmnAIScopes-are connected to various electrical sensors in the vehicle using Banana-to-BNC adapters. 
+The measurement prototype setup is shown in Figure~\ref{fig:early-scope}.
 Each scope records time-varying voltages from a specific sensor. 
 These scopes are linked via a central hub, which aggregates signals and routes them to the local laptop, where the OmnAIView software allows real-time signal visualization and preliminary interpretation.
+The interface of the legacy OmnAIView GUI is shown in Figure~\ref{fig:gui}.
 
 Collected measurement data is transferred via HTTP from the local hub to a remote web server. 
 The web server then forwards the data to the central THGA server, where it is stored for future analysis. 
