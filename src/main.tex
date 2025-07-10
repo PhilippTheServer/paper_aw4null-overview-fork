@@ -101,23 +101,26 @@ While fault diagnostics of the purely mechanical parts of the car, e.g. suspensi
 the diagnostics of peculiar electrical signals is as diverse as the ever-increasing amount of electrical assistant systems. 
 
 \subsection{Interesting Technologies for Upcoming Car Diagnostic Systems}
-Oscilloscopes are among the few tools that allow automotive technicians to observe real-time electrical behavior-something static diagnostic codes alone cannot reveal. They are used to pinpoint faults like voltage dropouts, transient glitches, or signal distortion, especially in sensors and control lines. This makes them indispensable for diagnosing elusive issues that don’t result in stored diagnostic trouble codes (DTCs).
-
-However, effective oscilloscope usage requires electrical knowledge, correct probe handling, and experience in waveform interpretation. These barriers make oscilloscopes impractical for many general-purpose workshops. As a result, only a small group of specialists can currently harness their full potential.
-
-Now, with the availability of modern microcontrollers, GUI-driven workflows, and automated analysis powered by machine learning, we aim to reduce the learning curve and increase the accessibility of oscilloscope diagnostics.
+Oscilloscopes are among the few tools that allow automotive technicians to observe real-time electrical behavior-something static diagnostic codes alone cannot reveal. 
+They are used to pinpoint faults like voltage dropouts, transient glitches, or signal distortion, especially in sensors and control lines.
+By capturing these short-lived anomalies, high-speed tools enable more precise fault tracing and reduce trial-and-error repairs. 
+This makes them indispensable for diagnosing elusive issues that don’t result in stored diagnostic trouble codes (DTCs).
 
 Different models of oscilloscopes vary in complexity and features, as shown in Figure~\ref{fig:scopes}, 
 which presents examples ranging from a traditional analog scope to more advanced digital and auto-scopes.
 
-Working with oscilloscopes requires a certain depth of electrical understanding as well as proper handling of the necessary components, 
-and well-trained pattern recognition of the recorded signals. 
-These three qualities decrease the level of teachability significantly. 
-Nevertheless, advanced electrical diagnosis requires recording timely varying voltages on an indicator of healthy or unhealthy behavior. 
+By analyzing the dynamic voltage behavior shown on the oscilloscope, technicians can identify engine faults that remain undetectable using current on-board and off-board diagnostic systems (e.g., OBD).
+Moreover, oscilloscopes offer a brand-independent, potentially cost-efficient diagnostic tool—strengthening the earlier argument about the cost-benefit ratio of external diagnostic platforms.
+
+However, effective oscilloscope usage requires electrical knowledge, correct probe handling, and experience in waveform interpretation. 
+These barriers make oscilloscopes impractical for many general-purpose workshops. 
+As a result, only a small group of specialists can currently harness their full potential. 
 Reiterating the previous argument about cost-benefit ratio of off-board diagnostic systems, 
 this leads to a situation in which a useful tool cannot be trivially deployed to non-prepared auto shops, due to extensive learning curves.
 
-Anyhow, we suspect to enhance teachability and robustness of these tools by employing certain technologies:
+Now, with the availability of modern microcontrollers, GUI-driven workflows, and automated analysis powered by machine learning, 
+we aim to reduce the learning curve and increase the accessibility of oscilloscope diagnostics. 
+We suspect to enhance teachability and robustness of these tools by employing certain technologies:
 \begin{enumerate}[label=\alph*)]
   \item Machine Learning for Signal Clustering
   \item Modern Microcontroller Technology
@@ -153,14 +156,6 @@ Anyhow, we suspect to enhance teachability and robustness of these tools by empl
   \label{fig:scopes}
 \end{figure}
 % Review the role of high-speed waveform capture in pinpointing transient faults.
-High-speed waveform capture plays a crucial role in pinpointing transient faults-those brief, 
-often sporadic anomalies in electrical signals that can be easily missed by slower measurement tools. 
-Transient faults in vehicle subsystems, such as voltage spikes, intermittent sensor glitches, or short-lived communication errors, 
-may not produce persistent error codes yet can significantly affect system performance or lead to cascading failures. 
-Oscilloscopes capable of capturing and storing high-frequency waveforms enable technicians to observe these fleeting events in real time, 
-providing detailed insights into the signal characteristics and timing relationships that traditional diagnostic methods may overlook. 
-By accurately recording these transient behaviors, high-speed capture tools empower mechanics and engineers to diagnose root causes more effectively, 
-reducing trial-and-error repairs and improving overall vehicle reliability.
 
 \subsubsection{Machine Learning for Signal Clustering}
 \begin{figure}[ht]
