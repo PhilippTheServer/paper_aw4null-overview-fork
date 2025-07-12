@@ -63,52 +63,58 @@ AI diagnostics, federated learning, automotive workshops, oscilloscopes, GAIA-X,
 % issue 9: more details in intro
 Modern vehicles integrate numerous interconnected subsystems, including mechanical components like engines and brakes, 
 electronic control units managing sensors and actuators, and electromechanical parts such as electronically controlled valves and motors. 
-Market pressure and user demands regarding energy efficiency, comfort and passenger safety lead to an over-increasing complexity in the systems themselves and their interactions.
+Market pressure and user demands regarding energy efficiency, comfort and passenger safety lead to an ever-increasing complexity in the systems themselves and their interactions.
 Diagnostic tools must therefore analyze data across these diverse systems, such as engine management, braking systems, airbag controllers, 
 and advanced driver-assistance features, to effectively identify the root cause of the malfunction.
 
 Design goals for these car diagnostic systems are multiple:
 \begin{itemize}
-  \item Clear error information delivery: easy to interpret, specific to identify
-  \item User-friendly hardware design: minimal physical controls, intuitive handling
-  \item Accessible software interface: quick installation, minimal user interaction
-  \item Low entry barrier for training: easy to demonstrate, multilingual support
+  \item Easy to interpret error information delivery
+  \item Hardware design with minimal physical controls
+  \item Accessible software interface with minimal user interaction
+  \item Easy to train and multilingual support
   \item Robustness against physical damage
-  \item Cost-effectiveness in operation: setup effort must not exceed time/resource savings
-  \item Prevention of misdiagnosis costs: avoids incorrect usage and unnecessary repairs
+  \item Cost-effectiveness setup and operation
+  \item Minimizes misdiagnosis and repair errors
 \end{itemize}
-Since some faults can lead to degraded combustion behaviors without noticeable effects for the car’s operator, 
-some of these diagnostic systems have to be built into the car while others may reside in a sophisticated auto workshop, 
-thus giving us the differentiation between on-board diagnostic and off-board diagnostic. 
-According to this very definition, on-board diagnostic tools get delivered with each and every individual car itself, hence adding a) more costs; b) more weight; c) more complexity to the car.
+Since some faults can lead to degraded combustion behaviors without immediately noticeable effects for the car’s operator, 
+many diagnostic systems—particularly those related to emissions—are legally required to be permanently integrated into the vehicle~\cite{obd-regulations, epa-obd}. 
+These legal requirements are enforced through regulations such as the European Union’s Euro 6 standards and the U.S. Environmental Protection Agency (EPA) OBD requirements. 
+As a result, a distinction arises between on-board diagnostics (OBD), which must be present in every vehicle by law, and off-board diagnostics, 
+which are operated externally in workshops to support more detailed or non-regulated diagnostics.
+According to this very definition, on-board diagnostic tools get delivered with each and every individual car itself, hence adding a) more costs; b) more weight; and c) more complexity to the car.
 
 It is therefore that auto manufacturers are trying to reduce the amount and extent of these systems to the least possible amount. 
-Usually working against governmental regulations, the operators justified wish for the cars’ status information and the necessity to beware the cars’ systems to operate under potentially harmful conditions. 
-In opposition to that, off-board systems do not need to be built into every car, but need to be bought by workshops. 
+This creates a tension between manufacturers, who aim to minimize on-board systems, and regulators, who enforce minimum diagnostic capabilities to ensure vehicle safety and environmental compliance.
+In opposition to that, off-board systems do not need to be built into every car, but need to be acquired by workshops. 
 The market pressure for those tools arises out of the situation that mechanics get paid for maintaining and repairing a car but not necessarily the diagnostics itself. 
 That’s why the evaluation of the cost-benefit ratios looks likely different for these tools.
 
 % issue 10: how does error detection currently work
-When a diagnostic need arises in an auto workshop, technicians typically rely on specialized off-board diagnostic tools. 
+When a diagnostic need arises in an auto workshop, technicians typically rely on specialized on-board-diagostic interfaces - in order to read out the fault-codes. 
 These tools connect to the vehicle’s onboard systems via standardized interfaces such as the OBD-II port (see Figure~\ref{fig:obd} for an example device). 
 Commonly used diagnostic devices include scan tools and code readers from vendors like Bosch, Snap-on, Autel, and Launch. 
-An essential diagnostic tool for electrical fault analysis is the oscilloscope, which has been used in its traditional and auto shop specific variations by car technicians since the 1960s.
+An essential off-board diagnostic tool for electrical fault analysis is the oscilloscope, 
+which has been used in its traditional and auto shop specific variations by car technicians since the late 1950s in Germany~\cite{hameg_history} and became widespread internationally during the 1960s~\cite{autoscope_hist}.
 These tools allow workshops to read error codes, perform system tests, and monitor sensor data to pinpoint faults. 
-Despite their effectiveness, these devices can be costly and often require regular updates to keep up with evolving vehicle technologies and manufacturer protocols.
+Although they are widely regarded as effective—mechanics report faster and more precise electrical diagnostics compared to basic 
+multimeters\cite{reddit_scope_efficiency}—they can be expensive and often require frequent updates to support proprietary and evolving communication protocols, 
+such as multiple OBD-II variants (SAE J1850, ISO 9141-2, ISO 15765/CAN) and manufacturer-specific protocols like UDS or VW's VCDS\cite{obd2_protocols, obd2_wiki, vcds}.
 
 \subsection{Future Challenges in ICEV and BEV}
-Diversification in the set of cars also leads to a diversification in diagnostics. 
+Diversification in the set of vehicles—driven by different models, manufacturers, and subsystem configurations—has led to increased diagnostic complexity, 
+requiring varied tools, protocols, and specialist knowledge~\cite{autodiagnostics_diversity, trid_diagnostic_complexity}. 
 One particular fork in the road appears to be the further differentiation between internal combustion engine vehicles – ICEV; and battery electric vehicles – BEV. 
-Both technologies confront auto shops with different diagnostic challenges. 
-Yet both have in common that they include electrical signals and purely mechanical parts. 
-While fault diagnostics of the purely mechanical parts of the car, e.g. suspension hinges, brakes, and fenders, can be categorized as a traditional craft, 
+Both technologies confront auto shops with different diagnostic challenges\footnote{See the curated list of articles and sources on this topic at \url{<script src="https://gist.github.com/kathamatician/fbc405fd53297b142fcf41163fad2d1e.js"></script>}},  
+yet both have in common that they include electrical signals and purely mechanical parts. 
+While fault diagnostics of the purely mechanical parts of the car, e.g. suspension, hinges, brakes, and fenders, can be categorized as a traditional craft, 
 the diagnostics of peculiar electrical signals is as diverse as the ever-increasing amount of electrical assistant systems. 
 
 \subsection{Interesting Technologies for Upcoming Car Diagnostic Systems}
 Oscilloscopes are among the few tools that allow automotive technicians to observe real-time electrical behavior-something static diagnostic codes alone cannot reveal. 
 They are used to pinpoint faults like voltage dropouts, transient glitches, or signal distortion, especially in sensors and control lines.
 By capturing these short-lived anomalies, high-speed tools enable more precise fault tracing and reduce trial-and-error repairs. 
-This makes them indispensable for diagnosing elusive issues that don’t result in stored diagnostic trouble codes (DTCs).
+This makes them indispensable for diagnosing elusive issues that don’t result in stored diagnostic trouble codes (DTCs)~\cite{vehicleempire2025, douzauto2024, automotivequest2025, fleetmaintenance2020}.
 
 Different models of oscilloscopes vary in complexity and features, as shown in Figure~\ref{fig:scopes}, 
 which presents examples ranging from a traditional analog scope to more advanced digital and auto-scopes.
@@ -116,7 +122,7 @@ which presents examples ranging from a traditional analog scope to more advanced
 By analyzing the dynamic voltage behavior shown on the oscilloscope, technicians can identify engine faults that remain undetectable using current on-board and off-board diagnostic systems (e.g., OBD).
 Moreover, oscilloscopes offer a brand-independent, potentially cost-efficient diagnostic tool—strengthening the earlier argument about the cost-benefit ratio of external diagnostic platforms.
 
-However, effective oscilloscope usage requires electrical knowledge, correct probe handling, and experience in waveform interpretation. 
+However, effective oscilloscope usage requires electrical knowledge, correct probe handling, and experience in waveform interpretation~\cite{rohde2024, autoditex2023, pico2021, mechanic2024}. 
 These barriers make oscilloscopes impractical for many general-purpose workshops. 
 As a result, only a small group of specialists can currently harness their full potential. 
 Reiterating the previous argument about cost-benefit ratio of off-board diagnostic systems, 
@@ -161,6 +167,7 @@ We suspect to enhance teachability and robustness of these tools by employing ce
 \end{figure}
 % Review the role of high-speed waveform capture in pinpointing transient faults.
 
+\vspace{1em}
 \subsubsection{Machine Learning for Signal Clustering}
 \begin{figure}[ht]
   \centering
@@ -178,7 +185,7 @@ We suspect to enhance teachability and robustness of these tools by employing ce
   \caption{Two waveforms: a bad and a good measurement of a compression cycle}
   \label{fig:waveforms_good_bad}
 \end{figure}
-Programed computer functions can be understood as mappings of a domain to a codomain, where the domain is vulgarly referred to as input data and the codomain as output data. 
+Programed computer functions can be understood as mappings of a domain to a codomain, where the domain is vulgarly referred to as input data and the codomain as output data~\cite{knuth71, wirth76}. 
 During the 1950s, researchers at Bell Laboratories and the Institute for Advanced Study in Princeton proposed that such programmatic functions could be executed autonomously by computer systems themselves 
 - an idea that anticipated what is now formalized as the Universal Approximation Theorem  \cite{Cybenko1989, Hornik1991}. 
 Since then, this niche idea has evolved into a scientific discipline called Artificial Intelligence and Machine Learning \cite{RussellNorvig2020, Goodfellow2016}. 
@@ -186,7 +193,7 @@ Latest advances in this area did demonstrate useful opportunities \cite{LeCun201
 It can thus be imagined to define an abstract function that maps a multidimensional time dependent vector of electrical quantities, also known as time series, to a certain fault category. 
 Figure~\ref{fig:waveforms_good_bad} shows two example waveforms—one from a poor and one from a properly functioning compression cycle—highlighting the type of signal variation that machine learning models can be trained to classify.
 From the toolkit of machine learning, multiple technologies could be interesting from a research stand point to generate such a function or group of functions, though all having in common a need for training data. 
-By automating signal interpretation, the implementation of such functions can reduce the need for manual waveform analysis, 
+Therefore we claim, that by automating signal interpretation, the implementation of such functions can reduce the need for manual waveform analysis, 
 lowering the level of expertise required and thus decreasing the amount of technician training necessary-while improving diagnostic reproducibility.
 
 \subsubsection{Modern Microcontroller Technology}
@@ -195,13 +202,23 @@ All of the mentioned parts are usually not meant for rough environments such as 
 Specially designed electronic oscilloscopes that come in ruggedized cases may end up costing multiple thousands of euros.
 
 % issue 14: Discussion of technical requirements
-So far, regular microcontrollers have not been used in oscilloscopes. 
-However, recent generations of microcontrollers offer sampling speeds in the low to mid MHz range, which can be sufficient for capturing many automotive signals, 
-such as ignition pulses (typically up to a few hundred kilohertz) or communication protocols like CAN bus (~500 kHz). 
+So far, regular microcontrollers have not been used widely in oscilloscopes. 
+However, recent generations of microcontrollers offer sampling speeds in the low to mid MHz range, 
+sufficient for capturing many automotive signals—such as ignition pulses (typically up to a few hundred kilohertz) or communication protocols like CAN bus (~500 kHz). 
+For instance, the RP2040’s 12-bit ADC runs up to 500 kS/s~\cite{rp2040_ds}, STM32F7 ADC clocks can reach ~50 MHz enabling multi‑MS/s operation~\cite{stm32f7_ds}, 
+and automotive‑grade Renesas RH850/C1M‑A cores operate at up to 320 MHz for high‑speed signal processing~\cite{rh850_ds}. 
 Typical fault-related signals in cars tend to lie well below 1 MHz, with transient events often occurring on the order of microseconds to milliseconds.
 
-Given these characteristics, microcontrollers capable of sampling at 1–5 MHz with adequate memory for capturing durations ranging from 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/ignition_pulse.jpeg}
+  \caption{Oscilloscope capture of an ignition secondary waveform showing coil saturation, current control, burn line, and high-voltage spike. Image adapted from diagnostic training material (2006).}
+  \label{fig:ignition-scope}
+\end{figure}
+
+Given these characteristics, we claim that microcontrollers capable of sampling at 1–5 MHz with adequate memory for capturing durations ranging from 
 milliseconds to seconds could provide meaningful diagnostic data for many use cases in auto shops. 
+As illustrated in Figure~\ref{fig:ignition-scope}, typical ignition pulses last for several milliseconds and contain features observable at sampling rates of around 1 MHz.
 Compared to faster but more expensive alternatives like FPGAs, developing a sampling oscilloscope on a microcontroller basis with a USB interface to a regular computer, 
 tablet, or smartphone could prove a viable way forward toward more robust yet inexpensive diagnostic tools tailored for the workshop environment.
 
@@ -215,6 +232,7 @@ tablet, or smartphone could prove a viable way forward toward more robust yet in
 Since the two cornerstones - machine learning and microcontroller - based oscilloscopes - have been identified by now, the challenge of connecting them has to be addressed.
 
 Since Machine Learning models require certain amounts of training data as well as centralized compute power, 
+% reference
 the according analysis models can be more easily run on centralized servers than on individual auto shop workstations. 
 Yet, the data acquisition with the microcontroller oscilloscopes has to be performed on-site at the auto shop. 
 Connecting these two modules could be done in a multitude of ways. 
