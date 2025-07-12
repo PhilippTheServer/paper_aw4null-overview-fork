@@ -3,7 +3,7 @@ SRCDIR    = src
 SRC       = $(SRCDIR)/main.tex
 TEXSRCS   = $(wildcard $(SRCDIR)/**/*.tex)
 
-LATEXMK_OPTS = -pdf \
+LATEXMK_OPTS = -pdf -bibtex \
                -interaction=nonstopmode \
                -usepretex="\PassOptionsToPackage{draft}{graphicx}" \
                -pdflatex="pdflatex %O %S" \
