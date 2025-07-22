@@ -373,7 +373,10 @@ As described in the Introduction, this step typically yields vague and sometimes
 To improve diagnostic specificity, USB-based oscilloscopes-our OmnAIScopes-are connected to various electrical sensors in the vehicle using Banana-to-BNC adapters. 
 The measurement prototype setup is shown in Figure~\ref{fig:early-scope}.
 Each scope records time-varying voltages from a specific sensor. 
-These scopes are linked via a central hub, which aggregates signals and routes them to the local laptop, where the OmnAIView software allows real-time signal visualization and preliminary interpretation.
+The USB 1.0 OmnAIScopes are connected to a USB 2.0 Hub with one single controller ensuring the same USB clock on all channels and eliminating bandwidth bottlenecks. 
+On the Laptop a data receiver service synchronises the signals using the USB clock signal and forwards the aggregated multichannel signal to OmnAIView for real-time visualization. 
+(In the Legacy OmnAIView, this is all done in one application. In the OmnAIView 2.0, this is done by a service that sends the data via WebSocket to the Angular Software for visualization).
+OmnAIView 2.0 consists of a local data service that uses REST-API and WebSocket for communicationing with the Angular GUI, the analysis services and the server at the THGA.
 The interface of the legacy OmnAIView GUI is shown in Figure~\ref{fig:gui}.
 
 Collected measurement data is transferred via HTTPS from the local hub to a remote web server. 
