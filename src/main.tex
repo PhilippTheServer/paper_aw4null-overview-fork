@@ -99,7 +99,8 @@ which has been used in its traditional and auto shop specific variations by car 
 These tools allow workshops to read error codes, perform system tests, and monitor sensor data to pinpoint faults. 
 Although they are widely regarded as effective—mechanics report faster and more precise electrical diagnostics compared to basic 
 multimeters\cite{reddit_scope_efficiency}—they can be expensive and often require frequent updates to support proprietary and evolving communication protocols, 
-such as multiple OBD-II variants (SAE J1850, ISO 9141-2, ISO 15765/CAN) and manufacturer-specific protocols like UDS or VW's VCDS\cite{obd2_protocols, obd2_wiki, vcds}.
+such as multiple OBD-II variants (SAE J1850, ISO 9141-2, ISO 15765/CAN) and manufacturer-specific protocols like UDS, which are commonly accessed by third-party 
+diagnostic tools such as VCDS\cite{obd2_protocols, obd2_wiki, vcds}.
 
 \subsection{Future Challenges in ICEV and BEV}
 Diversification in the set of vehicles—driven by different models, manufacturers, and subsystem configurations—has led to increased diagnostic complexity, 
@@ -277,7 +278,7 @@ Since the central entity of off-board diagnostics is ususally a techinician with
 
 \paragraph{Technician Workflow}
 A customer's car enters a workshop. 
-The first step taken in some cases is the full on-board-diagnostic scan resulting in a protocol of the quiry of all in the car available engine control units (abbr. ECU). 
+The first step taken in some cases is the full on-board-diagnostic scan resulting in a protocol of the quiry of all in the car available engine control units (ECU). 
 This protocol encapsulates the status in which the car enters the workshop, compiling information such as milage, ECU series numbers, installed system with according hardware and software versions as well as potentially stored diagnostic trouble codes.
 It is this protocol that can hint the technician to necessary maintenance or repair actions.
 Unfortunately, due to the lack of sophistication of some of the on-board-diagnostic systems, DTCs don't always point out a problem in the most obvious way. 
