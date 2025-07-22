@@ -376,8 +376,8 @@ Each scope records time-varying voltages from a specific sensor.
 These scopes are linked via a central hub, which aggregates signals and routes them to the local laptop, where the OmnAIView software allows real-time signal visualization and preliminary interpretation.
 The interface of the legacy OmnAIView GUI is shown in Figure~\ref{fig:gui}.
 
-Collected measurement data is transferred via HTTP from the local hub to a remote web server. 
-The web server then forwards the data to the central THGA server, where it is stored for future analysis. 
+Collected measurement data is transferred via HTTPS from the local hub to a remote web server. 
+The web server then forwards the data to the central THGA (Technische Hochschule Georg Agricola) server, where it is stored for future analysis. 
 This architecture aligns with the proposed use of REST APIs for asynchronous communication and WebSockets for synchronous interaction, as described in the REST API and Web Sockets subsection of the introduction.
 
 The long-term vision involves utilizing this stored signal data to train machine learning models capable of classifying faults based on signal patterns. 
