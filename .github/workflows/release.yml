@@ -27,7 +27,12 @@ jobs:
            latexmk \
            lmodern
       - name: Build PDF (ignore latexmk errors)
-        run: make || true
+        run: make
+
+      - name: Debug Build Files
+           run: |
+           ls -R build
+           cat build/aw4null-overview.log || true
 
 
       - name: Upload PDF to Release
