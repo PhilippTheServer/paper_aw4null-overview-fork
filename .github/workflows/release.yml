@@ -30,7 +30,7 @@ jobs:
         run: make
 
       - name: Debug Build Files
-           run: |
+        run: |
            ls -R build
            cat build/aw4null-overview.log || true
 
