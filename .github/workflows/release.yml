@@ -15,6 +15,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Clean Unicode (U+202F)
+        run: |
+          find src -name '*.tex' -print0 | xargs -0 sed -i 's/ / /g'
+
       - name: Install TeX + Make
         run: |
           sudo apt-get update
