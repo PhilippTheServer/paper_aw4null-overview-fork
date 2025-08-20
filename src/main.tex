@@ -78,7 +78,7 @@ Design goals for these car diagnostic systems are multiple:
   \item Minimizes misdiagnosis and repair errors
 \end{itemize}
 Since some faults can lead to degraded combustion behaviors without immediately noticeable effects for the car’s operator, 
-many diagnostic systems—particularly those related to emissions—are legally required to be permanently integrated into the vehicle~\cite{obd-regulations, epa-obd}. 
+many diagnostic systems—particularly those related to emissions—are legally required to be permanently integrated into the vehicle~\cite{obdregulations, epaobd}. 
 These legal requirements are enforced through regulations such as the European Union’s Euro 6 standards and the U.S. Environmental Protection Agency (EPA) OBD requirements. 
 As a result, a distinction arises between on-board diagnostics (OBD), which must be present in every vehicle by law, and off-board diagnostics, 
 which are operated externally in workshops to support more detailed or non-regulated diagnostics.
@@ -95,16 +95,16 @@ When a diagnostic need arises in an auto workshop, technicians typically rely on
 These tools connect to the vehicle’s onboard systems via standardized interfaces such as the OBD-II port (see Figure~\ref{fig:obd} for an example device). 
 Commonly used diagnostic devices include scan tools and code readers from vendors like Bosch, Snap-on, Autel, and Launch. 
 An essential off-board diagnostic tool for electrical fault analysis is the oscilloscope, 
-which has been used in its traditional and auto shop specific variations by car technicians since the late 1950s in Germany~\cite{hameg_history} and became widespread internationally during the 1960s~\cite{autoscope_hist}.
+which has been used in its traditional and auto shop specific variations by car technicians since the late 1950s in Germany~\cite{hameghistory} and became widespread internationally during the 1960s~\cite{autoscopehist}.
 These tools allow workshops to read error codes, perform system tests, and monitor sensor data to pinpoint faults. 
 Although they are widely regarded as effective—mechanics report faster and more precise electrical diagnostics compared to basic 
-multimeters\cite{reddit_scope_efficiency}—they can be expensive and often require frequent updates to support proprietary and evolving communication protocols, 
+multimeters\cite{redditscopeefficiency}—they can be expensive and often require frequent updates to support proprietary and evolving communication protocols, 
 such as multiple OBD-II variants (SAE J1850, ISO 9141-2, ISO 15765/CAN) and manufacturer-specific protocols like UDS, which are commonly accessed by third-party 
-diagnostic tools such as VCDS\cite{obd2_protocols, obd2_wiki, vcds}.
+diagnostic tools such as VCDS\cite{obd2protocols, obd2wiki, vcds}.
 
 \subsection{Future Challenges in ICEV and BEV}
 Diversification in the set of vehicles—driven by different models, manufacturers, and subsystem configurations—has led to increased diagnostic complexity, 
-requiring varied tools, protocols, and specialist knowledge~\cite{autodiagnostics_diversity, trid_diagnostic_complexity}. 
+requiring varied tools, protocols, and specialist knowledge~\cite{autodiagnosticsdiversity, triddiagnosticcomplexity}. 
 One particular fork in the road appears to be the further differentiation between internal combustion engine vehicles – ICEV; and battery electric vehicles – BEV. 
 Both technologies confront auto shops with different diagnostic challenges\footnote{See the curated list of articles and sources on this topic at \href{https://gist.github.com/kathamatician/fbc405fd53297b142fcf41163fad2d1e}{this GitHub Gist}},  
 yet both have in common that they include electrical signals and purely mechanical parts. 
@@ -205,22 +205,22 @@ Specially designed electronic oscilloscopes that come in ruggedized cases may en
 % issue 14: Discussion of technical requirements
 So far, regular microcontrollers have not been used widely in oscilloscopes. 
 However, recent generations of microcontrollers offer sampling speeds in the low to mid MHz range, 
-sufficient for capturing many automotive signals—such as ignition pulses (typically up to a few hundred kilohertz) or communication protocols like CAN bus (~500 kHz). 
-For instance, the RP2040’s 12-bit ADC runs up to 500 kS/s~\cite{rp2040_ds}, STM32F7 ADC clocks can reach ~50 MHz enabling multi‑MS/s operation~\cite{stm32f7_ds}, 
-and automotive‑grade Renesas RH850/C1M‑A cores operate at up to 320 MHz for high‑speed signal processing~\cite{rh850_ds}. 
+sufficient for capturing many automotive signals—such as ignition pulses (typically up to a few hundred kilohertz) or communication protocols like CAN bus (~500 kHz). 
+For instance, the RP2040’s 12-bit ADC runs up to 500 kS/s~\cite{rp2040ds}, STM32F7 ADC clocks can reach ~50 MHz enabling multi‑MS/s operation~\cite{stm32f7ds}, 
+and automotive‑grade Renesas RH850/C1M‑A cores operate at up to 320 MHz for high‑speed signal processing~\cite{rh850ds}. 
 Typical fault-related signals in cars tend to lie well below 1 MHz, with transient events often occurring on the order of microseconds to milliseconds.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.4\textwidth]{figures/ignition_pulse.jpeg}
   \caption{Oscilloscope capture of an ignition secondary waveform showing coil saturation, current control, burn line, and high-voltage spike. 
-  Image adapted from a user-contributed post on Electronics StackExchange~\cite{stackexchange_ignition}.}
+  Image adapted from a user-contributed post on Electronics StackExchange~\cite{stackexchangeignition}.}
   \label{fig:ignition-scope}
 \end{figure}
 
 Given these characteristics, we claim that microcontrollers capable of sampling at 1–5 MHz with adequate memory for capturing durations ranging from 
 milliseconds to seconds could provide meaningful diagnostic data for many use cases in auto shops. 
-As illustrated in Figure~\ref{fig:ignition-scope}, typical ignition pulses last for several milliseconds and contain features observable at sampling rates of around 1 MHz.
+As illustrated in Figure~\ref{fig:ignition-scope}, typical ignition pulses last for several milliseconds and contain features observable at sampling rates of around 1 MHz.
 Compared to faster but more expensive alternatives like FPGAs, developing a sampling oscilloscope on a microcontroller basis with a USB interface to a regular computer, 
 tablet, or smartphone could prove a viable way forward toward more robust yet inexpensive diagnostic tools tailored for the workshop environment.
 
@@ -293,7 +293,7 @@ An example for this is the diagnostic trouble code shown in Figure~\ref{fig:dtc_
 
 \begin{figure*}[ht]
 \centering
-\begin{lstlisting}
+\begin{lstlisting}[literate={°}{{\textdegree}}1]
     7380 - Manifold Pressure / Boost Sensor (G31)
     P0236 00 [165] - Implausible Signal
     MIL ON - Not Confirmed - Tested Since Memory Clear
