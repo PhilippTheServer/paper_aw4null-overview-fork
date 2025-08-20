@@ -373,10 +373,19 @@ As described in the Introduction, this step typically yields vague and sometimes
 To improve diagnostic specificity, USB-based oscilloscopes-our OmnAIScopes-are connected to various electrical sensors in the vehicle using Banana-to-BNC adapters. 
 The measurement prototype setup is shown in Figure~\ref{fig:early-scope}.
 Each scope records time-varying voltages from a specific sensor. 
-The USB 1.0 OmnAIScopes are connected to a USB 2.0 Hub with one single controller ensuring the same USB clock on all channels and eliminating bandwidth bottlenecks. 
-On the Laptop a data receiver service synchronises the signals using the USB clock signal and forwards the aggregated multichannel signal to OmnAIView for real-time visualization. 
-(In the Legacy OmnAIView, this is all done in one application. In the OmnAIView 2.0, this is done by a service that sends the data via WebSocket to the Angular Software for visualization).
-OmnAIView 2.0 consists of a local data service that uses REST-API and WebSocket for communicationing with the Angular GUI, the analysis services and the server at the THGA.
+
+The USB 1.0 OmnAIScopes are connected to a USB 2.0 hub with a single controller. 
+This ensures that all channels share the same USB clock, which is essential for synchronizing the signals and avoiding bandwidth bottlenecks. 
+Since the microcontrollers themselves have no inherent notion of absolute time, synchronization relies on the USB protocol clock, which defines when one bit ends and the next begins. 
+Importantly, synchronization only works reliably when the OmnAIScopes are connected to the same USB hub, as different hubs each maintain their own clock domain.
+
+On the laptop, a dedicated data receiver service collects the signals, aligns them based on the USB clock, and forwards the aggregated multichannel data stream to OmnAIView for real-time visualization. 
+In the legacy OmnAIView, these steps were handled within a single application. In OmnAIView 2.0, the responsibilities are separated: the data receiver service streams synchronized data via WebSocket to the Angular-based visualization frontend.
+
+OmnAIView 2.0 follows the single responsibility principle by separating data acquisition, synchronization, and visualization into distinct services. 
+A local data service exposes the synchronized data via REST API and WebSocket, enabling the Angular GUI, analysis modules, or even remote clients to access it without needing to know the underlying data handling details. 
+This modular architecture not only improves maintainability but also allows flexible deployment, for example, visualizing signals on a mobile device while acquisition is performed on a connected desktop PC.
+
 The interface of the legacy OmnAIView GUI is shown in Figure~\ref{fig:gui}.
 
 Collected measurement data is transferred via HTTPS from the local hub to a remote web server. 
