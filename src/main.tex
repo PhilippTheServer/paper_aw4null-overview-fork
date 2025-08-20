@@ -283,8 +283,55 @@ This protocol encapsulates the status in which the car enters the workshop, comp
 It is this protocol that can hint the technician to necessary maintenance or repair actions.
 Unfortunately, due to the lack of sophistication of some of the on-board-diagnostic systems, DTCs don't always point out a problem in the most obvious way. 
 An example for this is the diagnostic trouble code <DTC>
-\todo[inline]{enter correct dtc here}
-``Few pressure sensor output out of range'' This DTC describes an invalid value arriving at the motor controller.
+
+```7380 - Manifold Pressure / Boost Sensor (G31)
+P0236 00 [165] - Implausible Signal
+MIL ON - Not Confirmed - Tested Since Memory Clear
+   Freeze Frame:
+          Fault Status: 00000001
+          Fault Priority: 2
+          Fault Frequency: 1
+          Mileage: 313662 km
+          Date: 2014.14.30
+          Time: 00:11:44
+
+          Engine RPM: 0.00 /min
+          Normed load value: 0.0 %
+          Vehicle speed: 0 km/h
+          Coolant temperature: 30 °C
+          Intake air temperature: 19 °C
+          Ambient air pressure: 980 mbar
+          Voltage terminal 30: 12.762 V
+          Unlearning counter according OBD: 40
+          Charge air pressure: actual value-MAP_MMV: 1154.71 hPa
+          Charge air pressure: specified value-MAP_SP_MMV: 1154.71 hPa
+          Ambient air pressure: 98 kPa abs
+          Particle filter: difference pressure-DIP_PF: 0.00 hPa
+
+7382 - Manifold Pressure / Boost Sensor (G31)
+P0236 00 [096] - Implausible Signal
+Intermittent - Not Confirmed - Tested Since Memory Clear
+   Freeze Frame:
+          Fault Status: 00000001
+          Fault Priority: 2
+          Fault Frequency: 1
+          Date: 2000.00.00
+          Time: 00:00:00
+
+          Engine RPM: 0.00 /min
+          Normed load value: 0.0 %
+          Vehicle speed: 255 km/h
+          Coolant temperature: 34 °C
+          Intake air temperature: 19 °C
+          Ambient air pressure: 980 mbar
+          Voltage terminal 30: 12.536 V
+          Unlearning counter according OBD: 40
+          Charge air pressure: actual value-MAP_MMV: 1153.47 hPa
+          Charge air pressure: specified value-MAP_SP_MMV: 1153.47 hPa
+          Ambient air pressure: 98 kPa abs
+          Particle filter: difference pressure-DIP_PF: 0.00 hPa'''
+
+``Pressure sensor output out of range/implausible'' This DTC describes an invalid value arriving at the motor controller.
 Even though it specifies a clear symptom, it does not yet contain information about the origin of that faulty behavior.
 In stark contrast to what some people may think, diagnostic trouble codes do not directly indicate the necessary actions for repair.
 After analyzing the set of trouble codes, a technician will always resort to differential diagnostics using off-board tools.
