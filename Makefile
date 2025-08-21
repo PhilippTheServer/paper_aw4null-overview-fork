@@ -15,9 +15,6 @@ LATEXMK_OPTS = -pdf -bibtex \
 all: $(PDF)
 
 $(PDF): $(TEXSRCS)
-	latexmk $(LATEXMK_OPTS) $(SRC)
-
-draft: $(TEXSRCS)
 	latexmk -f -gg $(LATEXMK_OPTS) $(SRC)
 
 clean:
