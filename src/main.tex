@@ -38,17 +38,17 @@
 % issue 7: goal easy to miss in abstract
 \begin{abstract}
 This paper presents \textbf{autowerkstatt4null}, a three-year initiative to empower independent automotive workshops with AI-driven, federated diagnostics. 
-The project is funded by the \href{https://www.bundeswirtschaftsministerium.de/Navigation/EN/Home/home.html}{German Federal Ministry for Economic Affairs and Climate Action}. 
+The project was funded by the \href{https://www.bundeswirtschaftsministerium.de/Navigation/EN/Home/home.html}{German Federal Ministry for Economic Affairs and Climate Action}. 
 The project enhanced the initial diagnostic workflow through newly developed technologies and architectural concepts, incorporating real user feedback. 
 The resulting demonstrator showcases key outcomes: a modular measurement platform enabling flexible hardware integration, a secure data exchange hub for trusted collaboration, 
-asynchronous online diagnostics that decouple analysis from workshop constraints, and a digital academy supporting technician upskilling. 
+asynchronous online diagnostics that decouples analysis from workshop constraints, and a digital academy supporting technician upskilling. 
 Together, these innovations demonstrate how independent workshops can access advanced diagnostic capabilities previously limited to manufacturer tools, strengthening competitiveness and sustainability in the sector.
 
 \end{abstract}
 
 % Keywords
 \begin{IEEEkeywords}
-AI diagnostics, federated learning, automotive workshops, oscilloscopes, GAIA-X, REST, WebSockets
+AI diagnostics, federated learning, automotive workshops, oscilloscopes, GAIA-X, REST, WebSocket
 \end{IEEEkeywords}
 
 % 1. Introduction
@@ -63,7 +63,7 @@ AI diagnostics, federated learning, automotive workshops, oscilloscopes, GAIA-X,
 % issue 9: more details in intro
 Modern vehicles integrate numerous interconnected subsystems, including mechanical components like engines and brakes, 
 electronic control units managing sensors and actuators, and electromechanical parts such as electronically controlled valves and motors. 
-Market pressure and user demands regarding energy efficiency, comfort and passenger safety lead to an ever-increasing complexity in the systems themselves and their interactions.
+Market pressure, regulations, and user demands regarding energy efficiency, comfort and passenger safety lead to an ever-increasing complexity in the systems themselves and their interactions.
 Diagnostic tools must therefore analyze data across these diverse systems, such as engine management, braking systems, airbag controllers, 
 and advanced driver-assistance features, to effectively identify the root cause of the malfunction.
 
@@ -75,32 +75,31 @@ Design goals for these car diagnostic systems are multiple:
   \item Easy to train and multilingual support
   \item Robustness against physical damage
   \item Cost-effectiveness setup and operation
-  \item Minimizes misdiagnosis and repair errors
+  \item Minimization of misdiagnosis and repair errors
 \end{itemize}
 Since some faults can lead to degraded combustion behaviors without immediately noticeable effects for the car’s operator, 
 many diagnostic systems—particularly those related to emissions—are legally required to be permanently integrated into the vehicle~\cite{obdregulations, epaobd}. 
-These legal requirements are enforced through regulations such as the European Union’s Euro 6 standards and the U.S. Environmental Protection Agency (EPA) OBD requirements. 
-As a result, a distinction arises between on-board diagnostics (OBD), which must be present in every vehicle by law, and off-board diagnostics, 
+These legal requirements are enforced through regulations such as the European Union’s Euro 6 standards and the U.S. Environmental Protection Agency on-board diagnostics (OBD) requirements. 
+As a result, a distinction arises between OBD, which must be present in every vehicle by law, and off-board diagnostics, 
 which are operated externally in workshops to support more detailed or non-regulated diagnostics.
-According to this very definition, on-board diagnostic tools get delivered with each and every individual car itself, hence adding a) more costs; b) more weight; and c) more complexity to the car.
+According to this very definition, OBD tools get delivered with each and every individual car itself, hence adding a) more costs; b) more weight; and c) more complexity to the car.
 
-It is therefore that auto manufacturers are trying to reduce the amount and extent of these systems to the least possible amount. 
+It is therefore that auto manufacturers are trying to reduce the amount and extent of these systems. 
 This creates a tension between manufacturers, who aim to minimize on-board systems, and regulators, who enforce minimum diagnostic capabilities to ensure vehicle safety and environmental compliance.
 In opposition to that, off-board systems do not need to be built into every car, but need to be acquired by workshops. 
 The market pressure for those tools arises out of the situation that mechanics get paid for maintaining and repairing a car but not necessarily the diagnostics itself. 
-That’s why the evaluation of the cost-benefit ratios looks likely different for these tools.
+That’s why the evaluation of the cost-benefit ratios looks different for these tools.
 
-% issue 10: how does error detection currently work
-When a diagnostic need arises in an auto workshop, technicians typically rely on specialized on-board-diagostic interfaces - in order to read out the fault-codes. 
+When a diagnostic need arises in an auto workshop, technicians typically rely on specialized OBD-readout interfaces - in order to read out the fault-codes. 
 These tools connect to the vehicle’s onboard systems via standardized interfaces such as the OBD-II port (see Figure~\ref{fig:obd} for an example device). 
 Commonly used diagnostic devices include scan tools and code readers from vendors like Bosch, Snap-on, Autel, and Launch. 
-An essential off-board diagnostic tool for electrical fault analysis is the oscilloscope, 
-which has been used in its traditional and auto shop specific variations by car technicians since the late 1950s in Germany~\cite{hameghistory} and became widespread internationally during the 1960s~\cite{autoscopehist}.
 These tools allow workshops to read error codes, perform system tests, and monitor sensor data to pinpoint faults. 
-Although they are widely regarded as effective—mechanics report faster and more precise electrical diagnostics compared to basic 
-multimeters\cite{redditscopeefficiency}—they can be expensive and often require frequent updates to support proprietary and evolving communication protocols, 
+Although they are regarded as effective \footnote{mechanics report faster and more precise electrical diagnostics compared to basic 
+multimeters\cite{redditscopeefficiency}} they can be expensive and often require frequent updates to support proprietary and evolving communication protocols, 
 such as multiple OBD-II variants (SAE J1850, ISO 9141-2, ISO 15765/CAN) and manufacturer-specific protocols like UDS, which are commonly accessed by third-party 
 diagnostic tools such as VCDS\cite{obd2protocols, obd2wiki, vcds}.
+An essential off-board diagnostic tool for electrical fault analysis is the oscilloscope, 
+which has been used in its traditional and auto shop specific variations by car technicians since the late 1950s in Germany~\cite{hameghistory} and became widespread internationally during the 1960s~\cite{autoscopehist}.
 
 \subsection{Future Challenges in ICEV and BEV}
 Diversification in the set of vehicles—driven by different models, manufacturers, and subsystem configurations—has led to increased diagnostic complexity, 
@@ -120,12 +119,12 @@ This makes them indispensable for diagnosing elusive issues that don’t result 
 Different models of oscilloscopes vary in complexity and features, as shown in Figure~\ref{fig:scopes}, 
 which presents examples ranging from a traditional analog scope to more advanced digital and auto-scopes.
 
-By analyzing the dynamic voltage behavior shown on the oscilloscope, technicians can identify engine faults that remain undetectable using current on-board and off-board diagnostic systems (e.g., OBD).
+By analyzing the dynamic voltage behavior shown on the oscilloscope, technicians can identify engine faults that remain undetectable using current on-board and off-board diagnostic systems.
 Moreover, oscilloscopes offer a brand-independent, potentially cost-efficient diagnostic tool—strengthening the earlier argument about the cost-benefit ratio of external diagnostic platforms.
 
 However, effective oscilloscope usage requires electrical knowledge, correct probe handling, and experience in waveform interpretation~\cite{rohde2024, autoditex2023, pico2021, mechanic2024}. 
 These barriers make oscilloscopes impractical for many general-purpose workshops. 
-As a result, only a small group of specialists can currently harness their full potential. 
+As a result, only a subset of specialists can currently harness their full potential. 
 Reiterating the previous argument about cost-benefit ratio of off-board diagnostic systems, 
 this leads to a situation in which a useful tool cannot be trivially deployed to non-prepared auto shops, due to extensive learning curves.
 
@@ -175,15 +174,15 @@ We suspect to enhance teachability and robustness of these tools by employing ce
   
   \begin{subfigure}[b]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figures/bad.png}
-    \caption{Bad measurement}
+    \caption{}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figures/good.jpeg}
-    \caption{Good measurement}
+    \caption{}
   \end{subfigure}
 
-  \caption{Two waveforms: a bad and a good measurement of a compression cycle}
+  \caption{Two waveforms: a poor (a) and a good (b) a compression cycle. This can be assumed from the voltage drop while compressing and the following rebound}
   \label{fig:waveforms_good_bad}
 \end{figure}
 Programed computer functions can be understood as mappings of a domain to a codomain, where the domain is vulgarly referred to as input data and the codomain as output data~\cite{knuth71, wirth76}. 
@@ -192,7 +191,7 @@ During the 1950s, researchers at Bell Laboratories and the Institute for Advance
 Since then, this niche idea has evolved into a scientific discipline called Artificial Intelligence and Machine Learning \cite{RussellNorvig2020, Goodfellow2016}. 
 Latest advances in this area did demonstrate useful opportunities \cite{LeCun2015, Silver2016}. 
 It can thus be imagined to define an abstract function that maps a multidimensional time dependent vector of electrical quantities, also known as time series, to a certain fault category. 
-Figure~\ref{fig:waveforms_good_bad} shows two example waveforms—one from a poor and one from a properly functioning compression cycle—highlighting the type of signal variation that machine learning models can be trained to classify.
+Figure~\ref{fig:waveforms_good_bad} shows two example waveforms—one from a poorly and one from a properly functioning compression cycle—highlighting the type of signal variation that machine learning models can be trained to classify.
 From the toolkit of machine learning, multiple technologies could be interesting from a research stand point to generate such a function or group of functions, though all having in common a need for training data. 
 Therefore we claim, that by automating signal interpretation, the implementation of such functions can reduce the need for manual waveform analysis, 
 lowering the level of expertise required and thus decreasing the amount of technician training necessary-while improving diagnostic reproducibility.
@@ -205,8 +204,8 @@ Specially designed electronic oscilloscopes that come in ruggedized cases may en
 % issue 14: Discussion of technical requirements
 So far, regular microcontrollers have not been used widely in oscilloscopes. 
 However, recent generations of microcontrollers offer sampling speeds in the low to mid MHz range, 
-sufficient for capturing many automotive signals—such as ignition pulses (typically up to a few hundred kilohertz) or communication protocols like CAN bus (~500 kHz). 
-For instance, the RP2040’s 12-bit ADC runs up to 500 kS/s~\cite{rp2040ds}, STM32F7 ADC clocks can reach ~50 MHz enabling multi‑MS/s operation~\cite{stm32f7ds}, 
+sufficient for capturing many automotive signals—such as ignition pulses (typically up to a few hundred kilohertz) or communication protocols like CAN bus (500 kHz). 
+For instance, the RP2040’s 12-bit ADC runs up to 500 kS/s~\cite{rp2040ds}, STM32F7 ADC clocks can reach 50 MHz enabling multi‑MS/s operation~\cite{stm32f7ds}, 
 and automotive‑grade Renesas RH850/C1M‑A cores operate at up to 320 MHz for high‑speed signal processing~\cite{rh850ds}. 
 Typical fault-related signals in cars tend to lie well below 1 MHz, with transient events often occurring on the order of microseconds to milliseconds.
 
@@ -234,14 +233,14 @@ tablet, or smartphone could prove a viable way forward toward more robust yet in
 Since the two cornerstones - machine learning and microcontroller - based oscilloscopes - have been identified by now, the challenge of connecting them has to be addressed.
 
 Since Machine Learning models require certain amounts of training data as well as centralized compute power~\cite{Verbraeken2020DMLS}, 
-% reference 
 the according analysis models can be more easily run on centralized servers than on individual auto shop workstations. 
 Yet, the data acquisition with the microcontroller oscilloscopes has to be performed on-site at the auto shop. 
 Connecting these two modules could be done in a multitude of ways. 
-A conceptual overview of this architecture is illustrated in Figure~\ref{fig:data-server}, where an oscilloscope is connected to a server via USB, 
-and the server provides access to analysis services through REST and WebSocket protocols.
+A conceptual overview of this architecture is illustrated in Figure~\ref{fig:data-server}, where an oscilloscope is connected to a local diagnostics-computer via USB.
+This captures the data, memorizes it until a measurement is finished; packs it into a HTTP-message and sends it to a remote machine, which provides access to analysis services and further storage.
+The remote machine is answering with a diagnostic message of the captured signal.
 
-With the increasing employment of web technologies - especially HTTP (Hypertext Transfer Protocol)- it can be assumed that handling the data from acquisition to analysis could be implemented in an open-source approach. 
+With the increasing employment of web technologies -especially Hypertext Transfer Protocol (HTTP)- it can be assumed that handling the data from acquisition to analysis could be implemented in an open-source approach. 
 While doing that, the fundamental architecture needs to encompass two different modes of communication: asynchronous and synchronous.
 
 \paragraph{Asynchronous Communication}
@@ -252,15 +251,15 @@ One common approach to implement this model on the web is through REST (Represen
 HTTP (Hypertext Transfer Protocol) is a protocol that implements RESTful communication by defining how requests and responses are formatted and exchanged \cite{Fielding2000}.
 
 These communication methods can be used to send a structured package of acquired data, including a recorded time series of a voltage as well as relevant metadata about this measurement, 
-such as mileage, sensor type, make-and-model of a car to a server’s interface called API. 
+such as mileage, sensor type, make-and-model of a car to a server interface called API. 
 The server then has a certain amount of time to analyze the posted data, compare it against the internal database, formulate a response with a diagnosis and send it back to the requesting client.
 
 \paragraph{Synchronous Communication}
-The described pattern of analysis requires all of the posted data to be already in the RAM of the client’s machine, while the data itself can only be acquired one sample at a time over a certain period. 
-Collecting these individual samples into a structured block necessitates that the computer’s input channel as well as the data collecting module run synchronously, meaning with the same idea of time. 
-This can be done via an extension of the http called a web socket.
+The described pattern of analysis requires all of the posted data to be already in the RAM of the client machine, while the data itself can only be acquired one sample at a time over a certain period. 
+Collecting these individual samples into a structured block necessitates that input channel of the computer as well as the data collecting module run synchronously, sharing the same time reference. 
+This can be done via the WebSocket protocol, an extension of HTTP.
 
-In conclusion this means that the middleware between USB-connected oscilloscopes and internet connected analysis service can be implemented using off-the-shelf web frameworks.
+We conclude that the middleware between USB-connected oscilloscopes and internet connected analysis service can be implemented using off-the-shelf web frameworks.
 
 % 2. Proposed System
 \section{Proposed System}
@@ -279,7 +278,7 @@ Since the central entity of off-board diagnostics is ususally a techinician with
 \paragraph{Technician Workflow}
 A customer's car enters a workshop. 
 The first step taken in some cases is the full on-board-diagnostic scan resulting in a protocol of the quiry of all in the car available engine control units (ECU). 
-This protocol encapsulates the status in which the car enters the workshop, compiling information such as milage, ECU series numbers, installed system with according hardware and software versions as well as potentially stored diagnostic trouble codes.
+This protocol encapsulates the status in which the car enters the workshop, compiling information such as milage, ECU series numbers, installed system with according hardware and software versions as well as potentially stored DTCs.
 It is this protocol that can hint the technician to necessary maintenance or repair actions.
 Unfortunately, due to the lack of sophistication of some of the on-board-diagnostic systems, DTCs don't always point out a problem in the most obvious way. 
 An example for this is the diagnostic trouble code shown in Figure~\ref{fig:dtc_codes}.
@@ -348,7 +347,7 @@ An example for this is the diagnostic trouble code shown in Figure~\ref{fig:dtc_
 ``Pressure sensor output out of range/implausible'' This DTC describes an invalid value arriving at the motor controller.
 Even though it specifies a clear symptom, it does not yet contain information about the origin of that faulty behavior.
 In stark contrast to what some people may think, diagnostic trouble codes do not directly indicate the necessary actions for repair.
-After analyzing the set of trouble codes, a technician will always resort to differential diagnostics using off-board tools.
+After analyzing the set of trouble codes, a technician might resort to differential diagnostics using off-board tools.
 In case of the demostrated DTC, this might include validating the correct supply voltage to the sensor itself; 
 validating the supply voltage to the motor control unit; validating the produced fuel pressure by utilizing an external pressure gauge; and validating the ohmic resistance of the signal line with a multi meter.
 This differential diagnostic search tree is used and ordered to rule out one possible problem after another.
@@ -380,9 +379,19 @@ The proposed system can be compartmentalized into the following fields:
 In order for a produtive deployment of the proposed system, it must be figured out in what way acquired data from the workshop can be shared as a privacy preserving datum in a larger training data set, while also maintaining relevant meta information.
 Not only does training data need to be shared but also models which were generated on this very training data set.
 In succession of generating training data set and distilling analytical models, these models have to be distributed or provided as a service.
-
-\paragraph{Side Note on Distributing or Provisioning of a Service}
 Analytical models can be conceptualized as functions $Analysis = Model(Measurement)$.
+\begin{quote}
+\textbf{Analytical model.}  
+Let $x := (x_t)_{t=0}^{T}$ denote a $d$-dimensional time series with $x_t \in \mathbb{R}^d$ (the \emph{measurement}).  
+An analytical model $f_\theta$ maps this measurement to an analysis object:
+\[
+f_\theta : (\mathbb{R}^d)^{T+1} \to \mathcal{A}, \qquad a = f_\theta(x).
+\]
+Here, $\mathcal{A}$ denotes the space of possible analyses (e.g., classes, scores, or structured diagnostic reports).  
+Optionally, metadata $m$ may be included: $a = f_\theta(x, m)$.  
+In probabilistic form one often writes $p_\theta(a \mid x)$ and derives, for example, the most likely analysis 
+$a^\star = \arg\max_a p_\theta(a \mid x)$.
+\end{quote}
 This function needs to be evaluated on a machine.
 Since it is expected that a model is not generated by a workshop, in a workshop, but rather by a signal conditioning expert that has no connection to the workshop, the measurement to be analyzed and the model to analyze with are stored on different machines.
 This means that either the measurement data has to be sent to another machine on which the service function is available or the service function has to be transfered to the workshop machine prior to the actual diagnostic work. \hfill \\
@@ -390,13 +399,13 @@ In the demonstrator application different ideas to tackle this challenge shall b
 
 \subsubsection{GUI Usability}
 While developing a new diagnostic system, the ease of use can be a contributor to a project's success.
-Auto-shop-technicians face an ever-increasing time- and efficiency- pressure, hence an efficient and effective user interface to all use-cases in the scope need to pass practical application tests inside real auto shops.
+Auto-shop-technicians face an ever-increasing time- and efficiency-pressure, hence an efficient and effective user interface to all use-cases, need to pass practical application tests inside real auto shops.
 Furthermore, it must be made sure that the provided user-software is designed to be extended and forked without the necessity of refactoring.
 Therefore, the \textbf{autowerkstatt4null} project aims at an open-source-development for the demonstrator software.
 
 \subsubsection{Hardware}
 Automotive-oscilloscopes have been used for diagnostics since the 1970s already.
-The market is saturated, meaning that there are multiple options for each usecase available to the general auto shop.
+The market is saturated, meaning that there are multiple options for each use-case available to the general auto shop.
 Due to this, an evaluation of existing automotive-oscilloscopes shall be performed in order to find out whether or not available solutions meet the requirements of sturdiness, cost-benefit-ratio, and possibilities of intergration. \\
 
 By proving a concept of intergration of these three layers, the project will outline a possible foundation for a next-generation off-board-diagnostics solution intergrating state-of-the-art electrical signal analysis and machine learning/artificial-intelligence capabilities.
@@ -413,7 +422,7 @@ By proving a concept of intergration of these three layers, the project will out
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.8\linewidth]{figures/legacy_gui.png}
-  \caption{Legacy GUI: OmnAIView}
+  \caption{Prototype GUI: OmnAIView}
   \label{fig:gui}
 \end{figure}
 
@@ -428,42 +437,24 @@ The current demonstrator consists of six primary components:
   \item A formal contract
   \item Instructional materials
 \end{itemize}
-In accordance with the proposed workflow for car diagnostics, the process begins with connecting the vehicle to a VCDS device, which performs a standard OBD (on-board diagnostics) scan. 
-As described in the Introduction, this step typically yields vague and sometimes insufficient error codes (DTCs), which are then displayed and recorded on the local laptop.
+In accordance with the proposed workflow for car diagnostics, the process begins with connecting the vehicle to a VCDS device, which performs a standard OBD scan. 
+As described in the Introduction, this step typically yields vague and sometimes insufficient DTCs, which are then displayed and recorded on the local laptop.
 
-To improve diagnostic specificity, USB-based oscilloscopes-our OmnAIScopes-are connected to various electrical sensors in the vehicle using Banana-to-BNC adapters. 
+To improve diagnostic specificity, USB-based oscilloscopes are connected to various electrical sensors in the vehicle using Banana-to-BNC adapters. 
 The measurement prototype setup is shown in Figure~\ref{fig:early-scope}.
 Each scope records time-varying voltages from a specific sensor. 
 
-The USB 1.0 OmnAIScopes are connected to a USB 2.0 hub with a single controller. 
-This ensures that all channels share the same USB clock, which is essential for synchronizing the signals and avoiding bandwidth bottlenecks. 
 Since the microcontrollers themselves have no inherent notion of absolute time, synchronization relies on the USB protocol clock, which defines when one bit ends and the next begins. 
-Importantly, synchronization only works reliably when the OmnAIScopes are connected to the same USB hub, as different hubs each maintain their own clock domain.
+Therefore multiple USB-scopes have to be connected to the same root USB hub to be syncronized by the USB start-of-frame signals, as different hubs each maintain their own clock domain.
+The measurement computer runs a dedicated data receiver service that collects the signals, aligns them based on the USB clock, and forwards the aggregated multichannel data stream to the OmnAIView GUI for oscillographic visualization as displayed in Figure~\ref{fig:gui}.
 
-On the laptop, a dedicated data receiver service collects the signals, aligns them based on the USB clock, and forwards the aggregated multichannel data stream to OmnAIView for real-time visualization. 
-In the legacy OmnAIView, these steps were handled within a single application. In OmnAIView 2.0, the responsibilities are separated: the data receiver service streams synchronized data via WebSocket to the Angular-based visualization frontend.
-
-OmnAIView 2.0 follows the single responsibility principle by separating data acquisition, synchronization, and visualization into distinct services. 
-A local data service exposes the synchronized data via REST API and WebSocket, enabling the Angular GUI, analysis modules, or even remote clients to access it without needing to know the underlying data handling details. 
-This modular architecture not only improves maintainability but also allows flexible deployment, for example, visualizing signals on a mobile device while acquisition is performed on a connected desktop PC.
-
-The interface of the legacy OmnAIView GUI is shown in Figure~\ref{fig:gui}.
-
-Collected measurement data is transferred via HTTPS from the local hub to a remote web server. 
-The web server then forwards the data to the central THGA (Technische Hochschule Georg Agricola) server, where it is stored for future analysis. 
-This architecture aligns with the proposed use of REST APIs for asynchronous communication and WebSockets for synchronous interaction, as described in the REST API and Web Sockets subsection of the introduction.
+Collected measurement data is transferred via HTTP from the local hub to a remote gateway-server. 
+This forwards the data to the central training-data storage-server, for future analysis. 
 
 The long-term vision involves utilizing this stored signal data to train machine learning models capable of classifying faults based on signal patterns. 
 However, due to the current lack of sufficient training data in the THGA repository, real-time diagnostic feedback based on these models is not yet operational. 
 This aligns directly with the discussion in Machine Learning for Signal Clustering-highlighting the need for a significant and diverse training dataset before meaningful fault classification can be achieved.
 
-The demonstrator has already been deployed in 51 workshop environments over a six-month field test period, 
-fulfilling the initial goals set out under the Proof-of-Concepts section in the proposed system. 
-However, several challenges remain:
-\begin{itemize}
-  \item The various tools (VCDS, OmnAIView, hub interface, ML services) have not yet been unified into a single software platform, which limits usability.
-  \item Training data volume remains insufficient, restricting the machine learning module’s ability to generate actionable feedback.
-\end{itemize}
 
 
 
@@ -471,33 +462,39 @@ However, several challenges remain:
 \section{Results}
 \subsection{Technical Readiness}
 The current demonstrator successfully proves the technical feasibility of a physical data driven diagnostic workflow for automotive workshops. 
-During initial testing, the system exhibited asynchronous data transmission from oscilloscopes to a cloud server.
+During initial testing, the system exhibited data transmission from oscilloscopes to a locally running data server.
 Data was visualized via the local interface, providing technicians with immediate feedback from sensor measurements.
+Additionally, data could be labeled in the OmnAIView GUI and VCDS scans could be attached before being stored on the training-data server.
 
-From a throughput perspective, signal samples from multiple oscilloscopes were consistently streamed and rendered without major delay, even in parallel operation. 
+From a throughput perspective, signal samples from multiple oscilloscopes were consistently streamed and rendered without major delay, even in parallel operation of multiple scope channels. 
 
 Through hands-on work with the demonstrator, several key insights have emerged. 
-Most notably, the clearest value for technicians lies in the immediate ``reception'' and ``visualization'' of sensor data-bridging the current diagnostic gap left by standard OBD scans. 
-While conventional tools like VCDS provide a static view of ECU status and DTCs, the live waveform monitoring introduces a new, accessible dimension to vehicle diagnostics.
+Most notably, the clearest value for technicians lies in the immediate reception and visualization of sensor data-bridging the current diagnostic gap left by standard OBD scans. 
+While conventional tools like VCDS provide a static view of ECU status and DTCs, the live waveform monitoring provides an accessible dimension to vehicle diagnostics.
 
 However, the current system still consists of individually developed components that require manual coordination. 
 Moving forward, a critical step will be to unify these elements into a cohesive software architecture that abstracts complexity for the end user. 
-Additionally, the project now has a solid foundation to expand into ``data analysis'', including both classical signal processing and machine learning models. 
-These models could detect fault patterns, classify sensor behavior, and support predictive diagnostics-ultimately enabling technicians to make faster and more accurate repair decisions.
+Additionally, the project now has a solid foundation to expand into data analysis, including both classical signal processing and machine learning models. 
+These models could detect fault patterns, classify sensor behavior, and support predictive diagnostics; ultimately enabling technicians to make faster and more accurate repair decisions.
 
 
 
 \subsection{Usage and Feedback}
-51 workshops were equipped with an experimental system.
-All of which were personally brought to them and users were onboarded in a day-long workshop.
+The demonstrator has been deployed in 51 workshop environments over a six-month field test period, 
+all of which were personally deliverd and users were on-boarded in a day-long workshop.
 While a hand full of workshops produced data on a daily basis, other shops were only using the system rather occasionally. 
-The feedack regarding the scope hardware was really good in terms of usability and durability, even though some shops mentioned the physical dimensions of the device being a little too compact for some employees.
-The user-software itself got less good feedback. 
-Especially the GUI which was implemented using dear-imgui, struck the users as "old-fashioned" and not intuitive in its usage.
+The feedack regarding the scope hardware was rated good in terms of usability and durability, even though some shops mentioned the physical dimensions of the device being a little too compact for some employees.
+The user-software itself got less satisfying feedback. 
+Especially the GUI which was implemented using dear-imgui, struck the users as \textit{old-fashioned} and not intuitive in its usage.
 Moreover, key analysis features such as configurable triggers and advanced signal analysis tools, were reported as missing or insufficiently developed.
 Another challenge which was encountered during the testing periode was the situation, that some of the workshops didn't have stable internet connections on their shopfloor.
-This lead to interrupted data-transmission to the servers, while -due to a bug in the implementation- displaying a "successfully sent" message to the user.
-All-in-all the feedback from the workshops was rather satisfying to the project team, even though minor challenges as those mentioned above were encountered.
+This lead to interrupted data-transmission to the servers, while -due to a bug in the implementation- displaying a \textit{successfully sent}-message to the user.
+All-in-all the feedback from the workshops was satisfying to the project team.
+However, several challenges remain:
+\begin{itemize}
+  \item The various tools (VCDS, OmnAIView, hub interface, ML services) have not yet been unified into a single software platform, which limits usability.
+  \item Training data volume remains insufficient, restricting the machine learning module’s ability to generate actionable feedback.
+\end{itemize}
 
 \subsection{Gathered Data}
 The gathered data is currently stored in a cephfs storage network located at the THGA in Bochum.
@@ -512,14 +509,14 @@ enabling secure and efficient data flow from vehicle sensors to cloud-based anal
 This framework facilitates live diagnostics through real-time waveform visualization via the OmnAIView software, 
 offering improved fault detection specificity compared to traditional OBD systems. 
 Field tests in 51 workshops over a six-month period validated the system's technical feasibility, 
-demonstrating stable data transmission and low-latency signal rendering, which provides technicians with immediate diagnostic insights. 
+demonstrating data transmission and low-latency signal rendering, which provides technicians with immediate diagnostic insights. 
 While challenges such as software unification and the need for larger training datasets for AI-driven diagnostics remain, 
 these accomplishments provide a strong foundation for advancing next-generation automotive diagnostics.
 
 % 5. Outlook
 \section{Outlook}
 Based on the \textbf{autowerkstatt4null} project result, researchers, engineers, and application partners are convinced that the proposed, 
-implemented, and tested system shows potential to advance workshop/diagnostics in terms of specificity and ease of use.
+implemented, and tested system shows potential to advance workshop-diagnostics in terms of specificity and ease of use.
 Given these first experimental results, two approaches will be taken to progress with further developments. 
 
 First: a clear road map of future monetization of the project and its results has to be laid out in order to provide an environment for sustainable product development. 
