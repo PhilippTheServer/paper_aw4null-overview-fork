@@ -172,12 +172,12 @@ We suspect to enhance teachability and robustness of these tools by employing ce
 \begin{figure}[ht]
   \centering
   
-  \begin{subfigure}[b]{0.8\linewidth}
+  \begin{subfigure}[b]{0.7\linewidth}
     \includegraphics[width=\linewidth]{figures/bad_enhanced.png}
     \caption{}
   \end{subfigure}
   \vspace{0.5em}
-  \begin{subfigure}[b]{0.8\linewidth}
+  \begin{subfigure}[b]{0.7\linewidth}
     \includegraphics[width=\linewidth]{figures/good.jpeg}
     \caption{}
   \end{subfigure}
@@ -199,7 +199,16 @@ lowering the level of expertise required and thus decreasing the amount of techn
 \subsubsection{Modern Microcontroller Technology}
 Traditional oscilloscopes usually come as all-in-one boxes, with high-accuracy analog front-ends and delicate signal processing units to display the measured voltages on a built-in screen. 
 All of the mentioned parts are usually not meant for rough environments such as auto workshops. 
-Specially designed electronic oscilloscopes that come in ruggedized cases may end up costing multiple thousands of euros.
+Specially designed electronic oscilloscopes that come in ruggedized cases may end up costing multiple thousands of euros, such as:
+\begin{itemize}
+    \item PicoScope
+    \item FCD Scope
+    \item Bosch
+    \item Hella Gutmann
+    \item Tektronix 1100 Series
+    \item Fluke 120B / 190 Series
+    \item Keysight U125x / U160x
+\end{itemize}
 
 % issue 14: Discussion of technical requirements
 So far, regular microcontrollers have not been used widely in oscilloscopes. 
@@ -209,13 +218,13 @@ For instance, the RP2040’s 12-bit ADC runs up to 500 kS/s~\cite{rp2040ds}, STM
 and automotive‑grade Renesas RH850/C1M‑A cores operate at up to 320 MHz for high‑speed signal processing~\cite{rh850ds}. 
 Typical fault-related signals in cars tend to lie well below 1 MHz, with transient events often occurring on the order of microseconds to milliseconds.
 
-\begin{figure}[h]
+\begin{figure*}[h]
   \centering
-  \includegraphics[width=0.4\textwidth]{figures/ignition_pulse.jpeg}
+  \includegraphics[width=0.75\textwidth]{figures/ignition_pulse.jpeg}
   \caption{Oscilloscope capture of an ignition secondary waveform showing coil saturation, current control, burn line, and high-voltage spike. 
   Image adapted from a user-contributed post on Electronics StackExchange~\cite{stackexchangeignition}.}
   \label{fig:ignition-scope}
-\end{figure}
+\end{figure*}
 
 Given these characteristics, we claim that microcontrollers capable of sampling at 1–5 MHz with adequate memory for capturing durations ranging from 
 milliseconds to seconds could provide meaningful diagnostic data for many use cases in auto shops. 
@@ -226,8 +235,8 @@ tablet, or smartphone could prove a viable way forward toward more robust yet in
 \subsubsection{REST API and Web Sockets}
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.8\linewidth]{figures/data_server_architecture.png}
-  \caption{Architecture diagram: scope connected to server via libusb and server providing REST/WebSocket}
+  \includegraphics[width=0.8\linewidth]{figures/architecture.png}
+  \caption{Data-server architecture for oscilloscope integration.}
   \label{fig:data-server}
 \end{figure}
 Since the two cornerstones - machine learning and microcontroller - based oscilloscopes - have been identified by now, the challenge of connecting them has to be addressed.
