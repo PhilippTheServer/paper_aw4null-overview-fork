@@ -1,5 +1,11 @@
 % Document class
-\documentclass[conference,a4paper]{IEEEtran}
+\makeatletter
+\newcommand{\linebreakand}{%
+  \end{@IEEEauthorhalign}
+  \hfill\mbox{}\par
+  \mbox{}\hfill\begin{@IEEEauthorhalign}
+}
+\makeatother
 
 % Encoding and font
 \usepackage[T1]{fontenc}
@@ -41,6 +47,7 @@
 \usepackage{todonotes}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
+\usepackage{orcidlink}
 
 \usepackage{CJKutf8}
 \newcommand{\zh}[1]{\begin{CJK*}{UTF8}{gbsn}#1\end{CJK*}}
