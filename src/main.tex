@@ -9,19 +9,39 @@
 
 % Title and Authors
 \title{autowerkstatt4null: An Off-Board-Diagnostics Ecosystem for Car-Workshops}
-\author{%
-  \IEEEauthorblockN{%
-    Stephan Bökelmann\IEEEauthorrefmark{1}, René Glitza\IEEEauthorrefmark{1},%
-    Lukas Jakubczyk\IEEEauthorrefmark{2},%
-    Meihui Huang\IEEEauthorrefmark{3}, Odin Holmes\IEEEauthorrefmark{4}%
-  }
-  \IEEEauthorblockA{%
-    \IEEEauthorrefmark{1}Ruhr University Bochum, Germany\\
-    \IEEEauthorrefmark{2}THGA Bochum, Germany\\
-    \IEEEauthorrefmark{3}nabla B engineering UG, Germany\\
-    \IEEEauthorrefmark{4}Auto-Intern GmbH, Dortmund, Germany
-  }
+\author{
+\IEEEauthorblockN{Stephan Bökelmann}
+\IEEEauthorblockA{\textit{Ruhr University Bochum}\\
+Bochum, Germany \\
+sboekelmann@ep1.rub.de}
+\and
+\IEEEauthorblockN{René Glitza}
+\IEEEauthorblockA{\textit{Ruhr University Bochum}\\
+Bochum, Germany \\
+rene.glitza@rub.de}
+\and
+\IEEEauthorblockN{Meihui Huang (\zh{黄美慧})}
+\IEEEauthorblockA{\textit{nabla B engineering UG}\\
+Bochum, Germany \\
+meihui@nabla-b.engineering}
+\and
+\IEEEauthorblockN{Odin Holmes}
+\IEEEauthorblockA{\textit{Auto-Intern GmbH}\\
+Bochum, Germany \\
+odin.holmes@auto-intern.de}
+\and
+\IEEEauthorblockN{Lukas Jakubczyk}
+\IEEEauthorblockA{\textit{THGA Bochum}\\
+Bochum, Germany \\
+lukas.jakubczyk@thga.de}
+\and
+\IEEEauthorblockN{Tabea Röthemeyer}
+\IEEEauthorblockA{\textit{Auto-Intern GmbH}\\
+Bochum, Germany \\
+tabea.roethemeyer@auto-intern.de}
 }
+
+
 
 % Make the title area
 \maketitle
@@ -43,6 +63,8 @@ The project enhanced the initial diagnostic workflow through newly developed tec
 The resulting demonstrator showcases key outcomes: a modular measurement platform enabling flexible hardware integration, a secure data exchange hub for trusted collaboration, 
 asynchronous online diagnostics that decouples analysis from workshop constraints, and a digital academy supporting technician upskilling. 
 Together, these innovations demonstrate how independent workshops can access advanced diagnostic capabilities previously limited to manufacturer tools, strengthening competitiveness and sustainability in the sector.
+The project repository is available at: \url{https://github.com/nabla-B/paper_aw4null-overview}.
+
 
 \end{abstract}
 
@@ -56,7 +78,7 @@ AI diagnostics, federated learning, automotive workshops, oscilloscopes, GAIA-X,
 \subsection{State of Car Diagnostics}
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.95\linewidth]{figures/obd_device.jpg}
+  \includegraphics[width=0.9\linewidth]{figures/obd_device.jpg}
   \caption{Picture of an OBD device}
   \label{fig:obd}
 \end{figure}
@@ -140,7 +162,7 @@ We suspect to enhance teachability and robustness of these tools by employing ce
 \begin{figure}[ht]
   \centering
 
-  \begin{subfigure}[b]{0.7\linewidth}
+  \begin{subfigure}[b]{0.9\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/scope_old.jpg}
     \caption{\mbox{Legacy Bosch Motorentester including Oscilloscope}}
@@ -148,7 +170,7 @@ We suspect to enhance teachability and robustness of these tools by employing ce
 
   \vspace{0.5cm}
 
-  \begin{subfigure}[b]{0.7\linewidth}
+  \begin{subfigure}[b]{0.9\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/scope_autoscope.jpg}
     \caption{\mbox{Texvik DS8 Mk II v.2 Automotive Oscilloscope}}
@@ -156,7 +178,7 @@ We suspect to enhance teachability and robustness of these tools by employing ce
 
   \vspace{0.5cm}
 
-  \begin{subfigure}[b]{0.7\linewidth}
+  \begin{subfigure}[b]{0.9\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/scope_keysight.jpg}
     \caption{\mbox{Professional Keysight Laboratory Oscilloscope}}
@@ -172,12 +194,12 @@ We suspect to enhance teachability and robustness of these tools by employing ce
 \begin{figure}[ht]
   \centering
   
-  \begin{subfigure}[b]{0.7\linewidth}
+  \begin{subfigure}[b]{0.9\linewidth}
     \includegraphics[width=\linewidth]{figures/bad_enhanced.png}
     \caption{}
   \end{subfigure}
   \vspace{0.5em}
-  \begin{subfigure}[b]{0.7\linewidth}
+  \begin{subfigure}[b]{0.9\linewidth}
     \includegraphics[width=\linewidth]{figures/good.jpeg}
     \caption{}
   \end{subfigure}
@@ -220,7 +242,7 @@ Typical fault-related signals in cars tend to lie well below 1 MHz, with transie
 
 \begin{figure*}[h]
   \centering
-  \includegraphics[width=0.75\textwidth]{figures/ignition_pulse.jpeg}
+  \includegraphics[width=0.9\textwidth]{figures/ignition_pulse.jpeg}
   \caption{Oscilloscope capture of an ignition secondary waveform showing coil saturation, current control, burn line, and high-voltage spike. 
   Image adapted from a user-contributed post on Electronics StackExchange~\cite{stackexchangeignition}.}
   \label{fig:ignition-scope}
@@ -235,7 +257,7 @@ tablet, or smartphone could prove a viable way forward toward more robust yet in
 \subsubsection{REST API and Web Sockets}
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.8\linewidth]{figures/architecture.png}
+  \includegraphics[width=0.9\linewidth]{figures/architecture.png}
   \caption{Data-server architecture for oscilloscope integration.}
   \label{fig:data-server}
 \end{figure}
@@ -353,7 +375,7 @@ An example for this is the diagnostic trouble code shown in Figure~\ref{fig:dtc_
 \label{fig:dtc_codes}
 \end{figure*}
 
-``Pressure sensor output out of range/implausible'' This DTC describes an invalid value arriving at the motor controller.
+\textit{Pressure sensor output out of range/implausible} - This DTC describes an invalid value arriving at the motor controller.
 Even though it specifies a clear symptom, it does not yet contain information about the origin of that faulty behavior.
 In stark contrast to what some people may think, diagnostic trouble codes do not directly indicate the necessary actions for repair.
 After analyzing the set of trouble codes, a technician might resort to differential diagnostics using off-board tools.
@@ -423,14 +445,14 @@ By proving a concept of intergration of these three layers, the project will out
 \subsection{Demonstrator}
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.8\linewidth]{figures/early_prototype.jpg}
+  \includegraphics[width=0.9\linewidth]{figures/early_prototype.jpg}
   \caption{Early-Scope measurement prototype}
   \label{fig:early-scope}
 \end{figure}
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.8\linewidth]{figures/legacy_gui.png}
+  \includegraphics[width=0.9\linewidth]{figures/legacy_gui.png}
   \caption{Prototype GUI: OmnAIView}
   \label{fig:gui}
 \end{figure}
@@ -543,6 +565,8 @@ This project was made possible with financial support of Auto-Intern GmbH, LMIS 
 This work has been supported by the Bundesministerium für Wirtschaft und Klimaschutz (BMWK) project number 68GX21005E and the \href{https://gaia-x.eu/}{GAIA-X Project}.
 A detailed list of contributions can be obtained from Lukas Jakubczyk at the University for Applied Sciences THGA in Bochum; \href{mailto:lukas.jakubczyk@thga.de}{lukas.jakubczyk@thga.de}, \href{https://www.thga.de/forschung/maschinenbau-und-materialwissenschaften/labore/prolab-produkt-produktion}{PROLAB für Produkt + Produktion}, \href{https://maps.app.goo.gl/tQA3Qfn5f6gGqMHg8}{Technische Hochschule Georg Agricola, Herner Str. 45, DE-44787 Bochum}.
 We appreciate the support of all connected Car-Workshops and associated partners. 
+This paper was edited and is maintened by Meihui Huang (\zh{黄美慧}). 
+To leave comments or get a connection to the project, please use the \href{https://github.com/nabla-B/paper_aw4null-overview/issues}{github-issue tracker} or send a mail to \href{mailto:meihui@nabla-b.engineering}{meihui@nabla-b.engineering}
 
 
 \bibliographystyle{IEEEtran}
